@@ -15,14 +15,14 @@ const Header = () => {
                     <div className={styles.containerBoxIcon}>
                         {
                             dataBoxIcon.map((item) => {
-                                return <BoxIcon type={item.type} href={item.href} />
+                                return <BoxIcon key={item.type} type={item.type} href={item.href} />
                             })
                         }
                     </div>
                     <div className={styles.containerMenu}>
                         {
                             dataMenu.slice(0, 3).map((item) => (
-                                <Menu content={item.content} href={item.href} />
+                                <Menu key={item.content} content={item.content} href={item.href} />
                             ))
                         }
                     </div>
@@ -33,7 +33,7 @@ const Header = () => {
                 <div className={styles.containerBoxMenuRight}>
                     {
                         dataMenu.slice(3, dataMenu.length).map((item) => (
-                            <Menu content={item.content} href={item.href} />
+                            <Menu key={item.content} content={item.content} href={item.href} />
                         ))
                     }
                     <div className={styles.containerBoxButtonRight}>

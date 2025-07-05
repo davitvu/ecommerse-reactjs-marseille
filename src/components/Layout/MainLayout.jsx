@@ -4,9 +4,9 @@ const MainLayout = ({ children }) => {
     const { wrapLayout, container } = styles;
 
     return (
-        <main className={wrapLayout}>
+        <div className={wrapLayout}>
             <div className={container}>{children}</div>
-        </main>
+        </div>
     );
 }
 

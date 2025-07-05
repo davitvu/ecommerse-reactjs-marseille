@@ -1,0 +1,16 @@
+@use '@styles/variable.module.scss' as *;
+@use '@styles/mixin.module.scss' as *;
+
+.container {
+    // @include flex_box_custom(space-between, center, 15px);
+    // @include flex_box_custom(space-between, flex-start, 15px);
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.containerCount {
+    grid-column: span 2;
+}

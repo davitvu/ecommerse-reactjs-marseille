@@ -1,0 +1,37 @@
+@use "@styles/mixin.module.scss" as *;
+@use "@styles/variable.module.scss" as *;
+
+.container {
+    @include flex_box_custom(space-between, center, 0px);
+
+    margin-top: 80px;
+
+    .content {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .title {
+        width: 100%;
+        font-size: 35px;
+        color: $four_color;
+        font-weight: 400;
+        margin-bottom: 20px;
+    }
+    
+    .desc {
+        line-height: 26px;
+        width: 279px;
+        margin: 0 auto;
+        color: $thr_color;
+        font-size: 16px;
+        font-weight: 400;
+        margin-bottom: 40px;
+    }
+
+    .boxImg {
+        @include flex_box_custom(center, center, 0px);
+
+        width: 100%;
+    }
+}
