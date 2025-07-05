@@ -1,9 +1,9 @@
 import Button from "@components/Button/Button";
 import styles from "./SaleHomePage.module.scss";
-import useTranslateX from "@components/SaleHomePage/useTranslateX";
+import useTranslateXImage from "@/hooks/useTranslateXImage";
 
 const SaleHomePage = () => {
-    const { translateXPosition } = useTranslateX()
+    const { translateXPosition } = useTranslateXImage()
 
     return <div className={styles.container}>
         <div

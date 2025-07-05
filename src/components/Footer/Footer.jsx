@@ -8,7 +8,7 @@ const Footer = () => {
         </div>
         <div className={styles.boxNav}>
             {dataMenu.map((item) => (
-                <p>{item.content}</p>
+                <p key={item.content}>{item.content}</p>
             ))}
         </div>
         <div>

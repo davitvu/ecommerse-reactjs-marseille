@@ -6,10 +6,29 @@ import Logo from '@icons/images/Logo-retina.png'
 import reloadIcon from '@icons/svgs/reload.svg';
 import heartIcon from '@icons/svgs/heart.svg';
 import cartIcon from '@icons/svgs/cart.svg';
+import useScrollHandling from '@/hooks/useScrollHandling';
+import { useEffect, useState } from 'react';
+import classNames from 'classnames';
 
 const Header = () => {
+    const { scrollPosition } = useScrollHandling();
+    const [fixedPosition, setFixedPosition] = useState(false);
+    
+    useEffect(() => {
+        // if (scrollPosition > 83) {
+        //     setFixedPosition(true);
+        // } else {            
+        //     setFixedPosition(false);
+        // }
+
+        // setFixedPosition(scrollPosition > 83 ? true : false); // ngan gon
+        setFixedPosition(scrollPosition > 83); // ngang gon hon nua
+    }, [scrollPosition]);
+
     return (
-        <div className={styles.container}>
+        <div className={classNames(styles.container, styles.topHeader, {
+            [styles.fixedHeader]: fixedPosition
+        })}>
             <div className={styles.containerHeader}>
                 <div className={styles.containerBox}>
                     <div className={styles.containerBoxIcon}>

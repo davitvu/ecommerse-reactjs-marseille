@@ -1,9 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 
-const useTranslateX = () => {
+const useScrollHandling = () => {
     const [scrollDirection, setScrollDirection] = useState(null);
     const previousScrollPosition = useRef(0);
-    const [translateXPosition, setTranslateXPosition] = useState(80);
     const [scrollPosition, setScrollPosition] = useState(0);
 
     const scrollTracking = () => {
@@ -19,30 +18,16 @@ const useTranslateX = () => {
         setScrollPosition(currentScrollPosition);
     };
 
-    const handleTranslateX = () => {
-        if (scrollDirection === 'down' && scrollPosition > 3065) {
-            setTranslateXPosition(translateXPosition <= 0 ? 0 : translateXPosition - 1);
-        } else if (scrollDirection === 'up') {
-            setTranslateXPosition(translateXPosition >= 80 ? 80 : translateXPosition + 1);
-        }
-    }
-
     useEffect(() => {
         window.addEventListener('scroll', scrollTracking);
 
         return () => window.removeEventListener('scroll', scrollTracking);
     }, []);
 
-    useEffect(() => {
-        handleTranslateX();
-    }, [scrollPosition]);
-
     return {
-        translateXPosition,
-        handleTranslateX,
         scrollPosition,
         scrollDirection
     }
 }
 
-export default useTranslateX;
+export default useScrollHandling;

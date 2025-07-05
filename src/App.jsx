@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import HomePage from "@pages/Home/Home";
-import routes from "@routes/routes";
 import { Suspense } from "react";
+import routes from "@/routes/routes";
 
 function App() {
   return (
