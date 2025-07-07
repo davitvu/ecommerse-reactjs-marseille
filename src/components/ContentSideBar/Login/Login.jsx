@@ -1,22 +1,80 @@
 import InputCommon from '@/components/InputCommon/InputCommon';
 import styles from './Login.module.scss';
 import Button from '@/components/Button/Button';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import { useState } from 'react';
 
 const Login = () => {
+    const [isRegister, setIsRegister] = useState(false);
+
+    const formik = useFormik({
+        initialValues: {
+            email: "",
+            password: "",
+            cfmpassword: ""
+        },
+        validationSchema: Yup.object({
+            email: Yup.string().email("Invalid email").required("Email is require"),
+            password: Yup.string().min(6, "Password must be at least 6 characters").required("Password is require"),
+            cfmpassword: Yup.string().oneOf([Yup.ref('password'), null], 'Password must match')
+        }),
+        onSubmit: (values) => {
+
+        }
+    });
+
+    const handleToggleForm = () => {
+        setIsRegister(!isRegister);
+        formik.resetForm();
+    }
+
     return <div className={styles.container}>
-        <div className={styles.title}>SIGN IN</div>
+        <div className={styles.title}>{isRegister ? 'SIGN UP' : 'SIGN IN'}</div>
 
-        <InputCommon label={'Email'} type={'text'} isRequired />
-        <InputCommon label={'Password'} type={'password'} isRequired />
+        <form onSubmit={formik.handleSubmit}>
+            <InputCommon
+                id="email"
+                label={'Email'}
+                type={'text'}
+                isRequired
+                formik={formik}
+            />
+            <InputCommon
+                id="password"
+                label={'Password'}
+                type={'password'}
+                isRequired
+                formik={formik}
+            />
+            {isRegister && (
+                <InputCommon
+                    id="cfmpassword"
+                    label={'Confirm password'}
+                    type={'password'}
+                    isRequired
+                    formik={formik}
+                />
+            )}
+            {!isRegister && (
+                <div className={styles.boxRememberMe}>
+                    <input type="checkbox" />
+                    <span>Remember me</span>
+                </div>
+            )}
 
-        <div className={styles.boxRememberMe}>
-            <input type="checkbox" />
-            <span>Remember me</span>
-        </div>
+            <Button content={isRegister ? 'Signup' : 'Login'} type='submit' />
+        </form>
+        <Button
+            content={isRegister ? "Already have an account?" : "Don't have an account?"}
+            isPrimary={false}
+            style={{ marginTop: "10px" }}
+            onClick={handleToggleForm}
+        />
 
-        <Button content={"Login"} />
-
-        <div className={styles.lostPW}>Lost your password?</div>
+        {!isRegister && (
+            <div className={styles.lostPW}>Lost your password?</div>
+        )}
     </div>
 };
 
