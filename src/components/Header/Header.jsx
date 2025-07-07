@@ -7,13 +7,15 @@ import reloadIcon from '@icons/svgs/reload.svg';
 import heartIcon from '@icons/svgs/heart.svg';
 import cartIcon from '@icons/svgs/cart.svg';
 import useScrollHandling from '@/hooks/useScrollHandling';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import classNames from 'classnames';
+import { SidebarContext } from '@/contexts/SidebarProvider';
 
 const Header = () => {
+    const { isOpen, setIsOpen } = useContext(SidebarContext);
     const { scrollPosition } = useScrollHandling();
     const [fixedPosition, setFixedPosition] = useState(false);
-    
+
     useEffect(() => {
         // if (scrollPosition > 83) {
         //     setFixedPosition(true);
@@ -52,7 +54,7 @@ const Header = () => {
                 <div className={styles.containerBoxMenuRight}>
                     {
                         dataMenu.slice(3, dataMenu.length).map((item) => (
-                            <Menu key={item.content} content={item.content} href={item.href} />
+                            <Menu key={item.content} content={item.content} href={item.href} setIsOpen={setIsOpen} />
                         ))
                     }
                     <div className={styles.containerBoxButtonRight}>

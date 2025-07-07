@@ -4,6 +4,7 @@
 .btn {
     @include btn(176px, 42px, 3px, $primary_color);
 
+    width: 100%;
     font-size: 14px;
     font-weight: 300;
     cursor: pointer;
