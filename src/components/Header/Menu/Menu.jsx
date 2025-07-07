@@ -1,10 +1,20 @@
 import styles from '../Header.module.scss';
 
-const Menu = ({ content, href, setIsOpen }) => {
+const Menu = ({ content, href, handleOpenSideBar }) => {
+
+    const handleClick = () => {
+        switch (content) {
+            case 'Sign in':
+                return handleOpenSideBar('login');
+            default:
+                return handleOpenSideBar('test')
+        }
+    }
+
     return (
         <div
-            className={styles.menu}
-            onClick={() => setIsOpen(true)}
+            onClick={handleClick}
+            className={styles.menuItem}
         >{content}</div>
     )
 }

@@ -29,6 +29,7 @@
 
     &:hover {
         background-color: $primary_color;
+        opacity: .8;
         color: $white_color;
     }
 }

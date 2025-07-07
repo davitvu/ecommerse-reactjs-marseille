@@ -41,6 +41,10 @@
 
 .containerBoxButtonRight {
     @include flex_box_custom(center, center, 20px);
+
+    img:hover {
+        cursor: pointer;
+    }
 }
 
 .containerBox {
@@ -64,14 +68,14 @@
     height: 26px;
 }
 
-.menu {
+.menuItem {
     cursor: pointer;
     padding-top: 9px;
     font-size: 15px;
     color: $primary_color;
 }
 
-.menu::after {
+.menuItem::after {
     content: "";
     display: block;
     height: 3px;
@@ -84,7 +88,7 @@
     transition: transform 300ms, opacity 500ms;
 }
 
-.menu:hover::after {
+.menuItem:hover::after {
     opacity: 1;
     transform: scale(1);
 }

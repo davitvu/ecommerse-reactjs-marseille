@@ -12,9 +12,15 @@ import classNames from 'classnames';
 import { SidebarContext } from '@/contexts/SidebarProvider';
 
 const Header = () => {
-    const { isOpen, setIsOpen } = useContext(SidebarContext);
+    const { setIsOpen, setType } = useContext(SidebarContext);
     const { scrollPosition } = useScrollHandling();
     const [fixedPosition, setFixedPosition] = useState(false);
+
+
+    const handleOpenSideBar = (type) => {
+        setType(type);
+        setIsOpen(true);
+    };
 
     useEffect(() => {
         // if (scrollPosition > 83) {
@@ -43,7 +49,7 @@ const Header = () => {
                     <div className={styles.containerMenu}>
                         {
                             dataMenu.slice(0, 3).map((item) => (
-                                <Menu key={item.content} content={item.content} href={item.href} />
+                                <Menu key={item.content} content={item.content} href={item.href} handleOpenSideBar={handleOpenSideBar} />
                             ))
                         }
                     </div>
@@ -54,13 +60,13 @@ const Header = () => {
                 <div className={styles.containerBoxMenuRight}>
                     {
                         dataMenu.slice(3, dataMenu.length).map((item) => (
-                            <Menu key={item.content} content={item.content} href={item.href} setIsOpen={setIsOpen} />
+                            <Menu key={item.content} content={item.content} href={item.href} handleOpenSideBar={handleOpenSideBar} />
                         ))
                     }
                     <div className={styles.containerBoxButtonRight}>
-                        <img width={22} height={22} src={reloadIcon} alt="reloadIcon" />
-                        <img width={23} height={23} src={heartIcon} alt="heartIcon" />
-                        <img width={23} height={23} src={cartIcon} alt="cartIcon" />
+                        <img onClick={() => handleOpenSideBar('compare')} width={22} height={22} src={reloadIcon} alt="reloadIcon" />
+                        <img onClick={() => handleOpenSideBar('wishlist')} width={23} height={23} src={heartIcon} alt="heartIcon" />
+                        <img onClick={() => handleOpenSideBar('cart')} width={23} height={23} src={cartIcon} alt="cartIcon" />
                     </div>
                 </div>
             </div>
