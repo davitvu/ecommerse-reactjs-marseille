@@ -3,12 +3,16 @@ import styles from './Login.module.scss';
 import Button from '@/components/Button/Button';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ToastContext } from '@/contexts/ToastProvider';
+import { register, signIn, getInfo } from '@/apis/authService';
+import Cookies from 'js-cookie';
 
 const Login = () => {
     const [isRegister, setIsRegister] = useState(false);
     const { toast } = useContext(ToastContext);
+    const [isLoading, setIsLoading] = useState(false);
+    const [id, setId] = useState("");
 
     const formik = useFormik({
         initialValues: {
@@ -21,8 +25,45 @@ const Login = () => {
             password: Yup.string().min(6, "Password must be at least 6 characters").required("Password is require"),
             cfmpassword: Yup.string().oneOf([Yup.ref('password'), null], 'Password must match')
         }),
-        onSubmit: (values) => {
+        onSubmit: async (values) => {
+            if (isLoading) return;
 
+            const { email: username, password } = values;
+
+            setIsLoading(true);
+            if (isRegister) {
+                await register({ username, password })
+                    .then((res) => {
+                        toast.success(res.data.message);
+                        setIsLoading(false);
+                    })
+                    .catch((err) => {
+                        toast.error(err.response.data.message);
+                        setIsLoading(false);
+                    });
+            }
+
+            if (!isRegister) {
+                await signIn({ username, password })
+                    .then((res) => {
+                        console.log(res);
+                        const { id, token, refreshToken} = res.data;
+
+                        setId(id);
+                        Cookies.set('token', token);
+                        Cookies.set('refreshToken', refreshToken);
+
+                        toast.success("Login success");
+                        setIsLoading(false);
+                    })
+                    .catch((err) => {
+                        console.log(err);
+
+                        toast.error(err.response.data.message);
+                        setIsLoading(false);
+                    });
+            }
+            setIsLoading(false);
         }
     });
 
@@ -30,6 +71,12 @@ const Login = () => {
         setIsRegister(!isRegister);
         formik.resetForm();
     }
+
+    useEffect(() => {
+        if (id) {
+            getInfo(id);
+        }
+    }), [];
 
     return <div className={styles.container}>
         <div className={styles.title}>{isRegister ? 'SIGN UP' : 'SIGN IN'}</div>
@@ -65,10 +112,10 @@ const Login = () => {
                 </div>
             )}
 
-            <Button 
-                content={isRegister ? 'Signup' : 'Login'} 
-                type='submit' 
-                onClick={() => toast.success('Login succes')}
+            <Button
+                content={isLoading ? "Loading..." : isRegister ? 'Signup' : 'Login'}
+                disabled={isLoading}
+                type='submit'
             />
         </form>
         <Button
