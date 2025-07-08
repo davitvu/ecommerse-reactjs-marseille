@@ -3,10 +3,12 @@ import styles from './Login.module.scss';
 import Button from '@/components/Button/Button';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { ToastContext } from '@/contexts/ToastProvider';
 
 const Login = () => {
     const [isRegister, setIsRegister] = useState(false);
+    const { toast } = useContext(ToastContext);
 
     const formik = useFormik({
         initialValues: {
@@ -63,7 +65,11 @@ const Login = () => {
                 </div>
             )}
 
-            <Button content={isRegister ? 'Signup' : 'Login'} type='submit' />
+            <Button 
+                content={isRegister ? 'Signup' : 'Login'} 
+                type='submit' 
+                onClick={() => toast.success('Login succes')}
+            />
         </form>
         <Button
             content={isRegister ? "Already have an account?" : "Don't have an account?"}
