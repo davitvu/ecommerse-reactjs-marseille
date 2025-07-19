@@ -6,7 +6,9 @@ const Banner = () => {
         <div className={styles.content}>
             <h1 className={styles.title}>XStore Marseille04 Demo</h1>
             <p className={styles.desc}>Make yours celebrations even more special this years with beautiful.</p>
-            <Button content={"Go to shop"} />
+            <div className={styles.boxBtn}>
+                <Button content={"Go to shop"} />
+            </div>
         </div>
     </div>
 }

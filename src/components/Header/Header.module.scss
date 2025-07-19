@@ -73,10 +73,45 @@
     padding-top: 9px;
     font-size: 15px;
     color: $primary_color;
+    position: relative;
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    .subMenu {
+        position: absolute;
+        top: 40px;
+        width: 100%;
+        background-color: #fff;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+        .subMenuItem {
+            padding: 10px;
+
+            &:hover {
+                cursor: pointer;
+                background-color: $hover_color;
+            }
+        }
+    }
+
+    .subMenu::after {
+        position: absolute;
+        content: "";
+        display: block;
+        width: 100%;
+        height: 40px;
+        top: -35px;
+        z-index: 1010;
+    }
+
 }
 
 .menuItem::after {
     content: "";
+    cursor: pointer;
     display: block;
     height: 3px;
     background-color: $primary_color;
@@ -91,4 +126,22 @@
 .menuItem:hover::after {
     opacity: 1;
     transform: scale(1);
+}
+
+.boxCart {
+    position: relative;
+
+    .quantity {
+        @include radius_common(50%);
+        @include flex_box_custom(center, center, 0px);
+
+        position: absolute;
+        width: 17px;
+        height: 17px;
+        top: -7px;
+        right: -5px;
+        background-color: $primary_color;
+        color: #fff;
+        font-size: 12px;
+    }
 }

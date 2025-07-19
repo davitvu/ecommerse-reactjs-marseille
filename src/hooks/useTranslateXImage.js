@@ -6,9 +6,9 @@ const useTranslateXImage = () => {
     const [translateXPosition, setTranslateXPosition] = useState(80);
 
     const handleTranslateX = () => {
-        if (scrollDirection === 'down' && scrollPosition > 3065) {
+        if (scrollDirection === 'down' && scrollPosition > 1865) {
             setTranslateXPosition(translateXPosition <= 0 ? 0 : translateXPosition - 1);
-        } else if (scrollDirection === 'up') {
+        } else if (scrollDirection === 'up' && scrollPosition < 2440) {
             setTranslateXPosition(translateXPosition >= 80 ? 80 : translateXPosition + 1);
         }
     }

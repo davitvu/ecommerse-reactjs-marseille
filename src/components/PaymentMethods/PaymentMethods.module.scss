@@ -1,0 +1,47 @@
+@use '@styles/mixin.module.scss' as *;
+@use '@styles/variable.module.scss' as *;
+
+.containerGuarantee {
+    @include flex_box_custom(center, center, 0px);
+
+    flex-direction: column;
+    width: 100%;
+    margin-top: 40px;
+    border: 1px solid #e1e1e1;
+
+    .titleGuarantee {
+        font-size: 14px;
+        font-weight: 400;
+        color: $four_color;
+        padding: 0px 21px;
+        text-transform: uppercase;
+        transform: translateY(-50%);
+        background-color: #fff;
+
+        span {
+            color: #2e7d32
+        }
+    }
+
+    .boxGuarantee {
+        @include flex_box_custom(center, center, 15px);
+
+        margin: 21px 7px;
+
+        img {
+            border: 1px solid #e1e1e1;
+            border-radius: 4px;
+            width: 48px;
+            height: 32px;
+            cursor: pointer;
+        }
+    }
+}
+
+.guaranteeText {
+    width: 100%;
+    margin-top: 10px;
+    font-size: 14px;
+    color: $thr_color;
+    text-align: center;
+}

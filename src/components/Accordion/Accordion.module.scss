@@ -1,0 +1,42 @@
+@use '@styles/mixin.module.scss' as *;
+@use '@styles/variable.module' as *;
+
+.container {
+  margin-top: 20px;
+
+  .title {
+    @include flex_box_custom(flex-start, center, 5px);
+
+    padding: 12px 15px;
+    color: #404040;
+    font-size: 14px;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s ease;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  .activeTitle {
+    background-color: #f7f7f7;
+  }
+
+  .content {
+    height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    padding: 0 20px;
+  }
+
+  .isVisibility {
+    padding: 20px;
+    visibility: visible;
+    height: auto;
+  }
+
+  .borderBottom {
+    border-bottom: 1px solid #e1e1e1;
+  }
+}

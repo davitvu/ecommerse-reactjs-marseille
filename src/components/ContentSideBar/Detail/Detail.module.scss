@@ -1,0 +1,145 @@
+@use '@styles/mixin.module.scss' as *;
+@use '@styles/variable.module.scss' as *;
+
+.container {
+    padding: 15px;
+    height: 100vh;
+    overflow-y: auto;
+
+    .name {
+        font-size: 24px;
+        color: $four_color;
+        margin-top: 12px;
+    }
+
+    .price {
+        font-size: 20px;
+        color: $seconddary_color;
+        margin: 12px 0;
+    }
+
+    .description {
+        font-size: 16px;
+        color: $thr_color;
+        margin-bottom: 12px;
+        line-height: 1.7;
+    }
+
+    .size {
+        font-size: 14px;
+        color: $thr_color;
+        margin-bottom: 5px;
+    }
+
+    .sizeBox {
+        @include flex_box_custom(flex-start, center, 10px);
+        margin-bottom: 10px;
+
+        .sizeItem {
+            font-size: 12px;
+            color: $thr_color;
+            padding: 8px 12px;
+            border: 1px solid #e1e1e1;
+            cursor: pointer;
+            transition: all 0.3s ease;
+
+            &:hover {
+                border-color: $primary_color;
+            }
+        }
+
+        .sizeItemActive {
+            border-color: $primary_color;
+        }
+    }
+
+    .clearSize {
+        font-size: 14px;
+        color: $four_color;
+        cursor: pointer;
+        margin-bottom: 20px;
+    }
+
+    .btnOption {
+        @include flex_box_custom(flex-start, center, 20px);
+        margin-bottom: 12px;
+
+        .selectBox {
+            padding: 6px 30px 6px 8px;
+        }
+
+        .btnAddToCart {
+            width: 190px;
+            height: 40px;
+            border-radius: 4px;
+        }
+
+    }
+
+    .btnAddToCartContent {
+        @include flex_box_custom(center, center, 7px);
+    }
+
+    .orBox {
+        @include flex_box_custom(center, center, 10px);
+        margin-bottom: 12px;
+
+        .orLine {
+            width: 100%;
+            height: 1px;
+            background-color: #e1e1e1;
+        }   
+
+        .orText {
+            font-size: 12px;
+            color: $thr_color;
+        }
+    }
+
+    .btnBuyNow {
+        width: 100%;
+        height: 40px;
+        border-radius: 4px;
+        margin-bottom: 20px;
+    }
+
+    .btnAction {
+        @include flex_box_custom(center, flex-start, 12px);
+        
+        flex-direction: column;
+        font-size: 16px;
+        color: $thr_color;
+        margin-bottom: 15px;
+        
+        .btnActionItem {
+            @include flex_box_custom(flex-start, center, 10px);
+
+            cursor: pointer;
+        }
+    }
+
+    .textInfo {
+        font-size: 16px;
+        color: $four_color;
+        margin-bottom: 15px;
+
+        span {
+            color: $seconddary_color;
+        }
+    }
+
+    .shareBox {
+        @include flex_box_custom(flex-start, center, 10px);
+
+        p {
+            margin-bottom: 0;
+        }
+
+        .shareItem {
+            @include flex_box_custom(center, center, 10px);
+
+            font-size: 14px;
+            color: $seconddary_color;
+        }
+    }
+}

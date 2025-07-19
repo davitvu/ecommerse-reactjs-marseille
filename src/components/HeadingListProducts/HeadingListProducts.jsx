@@ -10,8 +10,15 @@ const HeadingListProducts = ({ data }) => {
                 <CountdownBanner />
             </div>
             {
-                data.map((item) => 
-                    <ProductItem key={item._id} mainSrc={item.images[0]} subSrc={item.images[1]} title={item.name} price={item.price}/>
+                data.map((item) =>
+                    <ProductItem
+                        key={item._id}
+                        mainSrc={item.images[0]}
+                        subSrc={item.images[1]}
+                        title={item.name}
+                        price={item.price}
+                        details={item}
+                    />
                 )
             }
         </div>

@@ -1,0 +1,65 @@
+@use '@styles/variable.module.scss' as *;
+
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-weight: 300;
+
+    .label {
+        font-size: 14px;
+        color: $thr_color;
+        margin-bottom: 10px;
+    }
+
+    .inputBox {
+
+        input,
+        select {
+            width: var(--widthInput, 100%);
+            height: var(--heightInput, 37px);
+            font-weight: 300;
+
+            padding: 0 15px;
+            border: 1px solid #e1e1e1;
+            color: $seconddary_color;
+
+            &:focus {
+                border: 1px solid #333;
+                outline: none;
+            }
+        }
+
+        input[type="number"] {
+
+            /* Chrome, Safari, Edge, Opera */
+            &::-webkit-outer-spin-button,
+            &::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+
+            /* Firefox */
+            -moz-appearance: textfield;
+        }
+
+        .error {
+            border-color: red !important;
+        }
+
+        textarea {
+            font-weight: 300;
+            width: 100%;
+            height: 100px;
+            padding: 15px;
+            border: 1px solid #e1e1e1;
+            color: $seconddary_color;
+            resize: vertical;
+
+            &:focus {
+                border: 1px solid #333;
+                outline: none;
+            }
+        }
+    }
+}

@@ -3,16 +3,19 @@ import styles from './Login.module.scss';
 import Button from '@/components/Button/Button';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { ToastContext } from '@/contexts/ToastProvider';
-import { register, signIn, getInfo } from '@/apis/authService';
+import { register, signIn } from '@/apis/authService';
 import Cookies from 'js-cookie';
+import { SidebarContext } from '@/contexts/SidebarProvider';
+import { StoreContext } from '@/contexts/storeProvider';
 
 const Login = () => {
     const [isRegister, setIsRegister] = useState(false);
     const { toast } = useContext(ToastContext);
     const [isLoading, setIsLoading] = useState(false);
-    const [id, setId] = useState("");
+    const { setIsOpen, handleGetListProductsCart } = useContext(SidebarContext);
+    const { setUserId } = useContext(StoreContext);
 
     const formik = useFormik({
         initialValues: {
@@ -46,19 +49,19 @@ const Login = () => {
             if (!isRegister) {
                 await signIn({ username, password })
                     .then((res) => {
-                        console.log(res);
                         const { id, token, refreshToken} = res.data;
 
-                        setId(id);
+                        Cookies.set('userId', id);
                         Cookies.set('token', token);
                         Cookies.set('refreshToken', refreshToken);
 
                         toast.success("Login success");
+                        setUserId(id);
+                        setIsOpen(false);
                         setIsLoading(false);
+                        handleGetListProductsCart(id, 'cart');
                     })
                     .catch((err) => {
-                        console.log(err);
-
                         toast.error(err.response.data.message);
                         setIsLoading(false);
                     });
@@ -71,12 +74,6 @@ const Login = () => {
         setIsRegister(!isRegister);
         formik.resetForm();
     }
-
-    useEffect(() => {
-        if (id) {
-            getInfo(id);
-        }
-    }), [];
 
     return <div className={styles.container}>
         <div className={styles.title}>{isRegister ? 'SIGN UP' : 'SIGN IN'}</div>
@@ -114,6 +111,7 @@ const Login = () => {
 
             <Button
                 content={isLoading ? "Loading..." : isRegister ? 'Signup' : 'Login'}
+                style={{ height: "40px" }}
                 disabled={isLoading}
                 type='submit'
             />
@@ -121,7 +119,7 @@ const Login = () => {
         <Button
             content={isRegister ? "Already have an account?" : "Don't have an account?"}
             isPrimary={false}
-            style={{ marginTop: "10px" }}
+            style={{ marginTop: "10px", height: "40px" }}
             onClick={handleToggleForm}
         />
 

@@ -1,0 +1,407 @@
+@use '@styles/mixin.module.scss' as *;
+@use '@styles/variable.module.scss' as *;
+
+.detailProduct {
+    margin-top: 83px;
+    position: relative;
+
+    .navBox {
+        @include flex_box_custom(space-between, center, 0px);
+
+        margin-bottom: 10px;
+        padding: 10px;
+        color: $seconddary_color;
+        font-size: 14px;
+        font-weight: 300;
+
+        .navText {
+            color: $primary_color;
+            font-weight: normal;
+        }
+
+        .navBack {
+            cursor: pointer;
+        }
+    }
+
+    .detailProductLeft {
+        max-width: 610px;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+
+        img {
+            width: calc(100% / 2 - 10px / 2);
+            height: 350px;
+            object-fit: cover;
+            border-radius: 4px;
+            cursor: zoom-in;
+        }
+
+    }
+
+    .detailProductContent {
+        @include flex_box_custom(flex-start, flex-start, 30px);
+
+        .detailProductRight {
+            flex: 1;
+
+            .title {
+                font-size: 24px;
+                font-weight: 400;
+                margin: 0 0 20px;
+                color: $four_color;
+            }
+
+            .price {
+                font-size: 20px;
+                font-weight: 400;
+                margin: 0 0 20px;
+                color: $seconddary_color;
+            }
+
+            .description {
+                font-size: 16px;
+                font-weight: 400;
+                margin: 0 0 20px;
+                color: $thr_color;
+            }
+
+            .sizeBox {
+                @include flex_box_custom(center, flex-start, 0px);
+
+                flex-direction: column;
+                margin-bottom: 20px;
+
+                p {
+                    font-size: 16px;
+                    font-weight: 400;
+                    color: $thr_color;
+                    margin: 0 0 10px;
+                }
+
+                .sizeList {
+                    @include flex_box_custom(center, center, 10px);
+
+                    .sizeItem {
+                        @include flex_box_custom(center, center, 0px);
+
+                        border: 1px solid #e1e1e1;
+                        padding: 6px 10px;
+                        font-size: 14px;
+                        color: $thr_color;
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                        user-select: none;
+
+                        &:hover {
+                            border-color: $primary_color;
+                        }
+                    }
+
+                    .sizeItemActive {
+                        border-color: $primary_color;
+                    }
+
+                    .clearSize {
+                        font-size: 14px;
+                        color: $four_color;
+                        cursor: pointer;
+                        margin: 0;
+                        text-decoration: underline;
+                    }
+                }
+            }
+
+            .quantityBox {
+                @include flex_box_custom(flex-start, center, 20px);
+
+                border-radius: 4px;
+
+                .quantity {
+                    @include flex_box_custom(center, center, 0px);
+
+                    border: 1px solid #e1e1e1;
+
+                    .quantityItem {
+                        @include flex_box_custom(center, center, 0px);
+
+                        padding: 10px 5px;
+                        color: $seconddary_color;
+                        cursor: pointer;
+                        user-select: none;
+                    }
+
+                    .quantityInput {
+                        width: 38px;
+                        height: 40px;
+                        text-align: center;
+                        border-top: none;
+                        border-bottom: none;
+                        border-left: 1px solid #e1e1e1;
+                        border-right: 1px solid #e1e1e1;
+                        padding-left: 3px;
+                        padding-right: 3px;
+                        color: $primary_color;
+                        outline: none;
+
+                        /* Chrome, Safari, Edge, Opera */
+                        &::-webkit-outer-spin-button,
+                        &::-webkit-inner-spin-button {
+                            -webkit-appearance: none;
+                            margin: 0;
+                        }
+
+                        /* Firefox */
+                        -moz-appearance: textfield;
+                    }
+                }
+
+                .btnAddToCart {
+                    @include flex_box_custom(center, center, 10px);
+
+                    width: 100%;
+                    height: 40px;
+                }
+            }
+
+            .orBox {
+                @include flex_box_custom(center, center, 10px);
+
+                margin: 20px 0;
+
+                .orLine {
+                    width: 100%;
+                    height: 1px;
+                    background-color: #e1e1e1;
+                }
+
+                .orText {
+                    font-size: 12px;
+                    color: $thr_color;
+                }
+            }
+
+            .btnBuyNow {
+                width: 100%;
+                height: 40px;
+                border-radius: 4px;
+                margin-bottom: 20px;
+
+                .btnBuyNowContent {
+                    @include flex_box_custom(center, center, 10px);
+                }
+            }
+
+            .btnAction {
+                @include flex_box_custom(center, flex-start, 18px);
+
+                flex-direction: column;
+                font-size: 16px;
+                color: $thr_color;
+                margin-bottom: 15px;
+
+                .btnActionItem {
+                    @include flex_box_custom(flex-start, center, 10px);
+
+                    cursor: pointer;
+                }
+            }
+
+            .textInfoBox {
+                margin-top: 30px;
+
+                .textInfo {
+                    font-size: 16px;
+                    color: $four_color;
+                    margin-bottom: 15px;
+
+                    span {
+                        color: $seconddary_color;
+                    }
+
+                }
+            }
+
+        }
+    }
+}
+
+.infoProduct {
+
+    div:last-child {
+        border-bottom: none;
+    }
+
+    .itemInfo {
+        @include flex_box_custom(flex-start, center, 0px);
+
+        width: 100%;
+        border-bottom: 1px solid #e1e1e1;
+        padding: 15px 0;
+
+        .titleInfo {
+            width: 25%;
+            font-size: 16px;
+            color: $seconddary_color;
+        }
+
+        .descInfo {
+            flex-grow: 1;
+            color: $thr_color;
+        }
+
+    }
+}
+
+.review {
+    width: 100%;
+    font-size: 14px;
+
+    .review {
+        font-size: 14px;
+        color: $seconddary_color;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #e1e1e1;
+        margin-bottom: 15px;
+    }
+
+    .noreview {
+        color: $thr_color;
+    }
+
+    .replyForm {
+        padding-top: 40px;
+
+        .replyTitle {
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #e1e1e1;
+            color: $primary_color;
+        }
+
+        .replyContent {
+            color: $thr_color;
+            margin-bottom: 20px;
+        }
+
+        .confirmForm {
+            @include flex_box_custom(flex-start, flex-start, 10px);
+
+            margin-bottom: 20px;
+
+            label {
+                font-size: 16px;
+                line-height: 1.3;
+                color: $thr_color;
+                margin-top: -3px;
+            }
+        }
+
+        .btnSubmit {
+            width: 106px;
+            height: 35px;
+            border-radius: 4px;
+        }
+    }
+
+}
+
+.formItem {
+    margin-bottom: 20px;
+
+    .formItemLabel {
+        font-size: 16px;
+        color: $thr_color;
+        margin-bottom: 10px;
+
+        span {
+            color: #c62020
+        }
+    }
+
+    .formItemContent {
+        width: 100%;
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            border: 1px solid #e1e1e1;
+            padding: 10px 5px;
+        }
+
+        input {
+            height: 40px;
+        }
+
+        .rating {
+            @include flex_box_custom(flex-start, center, 15px);
+
+            color: $seconddary_color;
+
+            div {
+                cursor: pointer;
+                color: #e1e1e1;
+                transition: all 0.3s ease;
+
+                &:hover {
+                    color: #ffd700;
+                }
+            }
+
+            .active {
+                color: #ffd700;
+            }
+        }
+    }
+}
+
+.relatedProduct {
+    margin-top: 100px;
+
+    .relatedProductTitle {
+        font-size: 24px;
+        color: $primary_color;
+        margin-bottom: 30px;
+        text-align: center;
+        font-weight: 400;
+    }
+}
+
+.activeDisabledBtn {
+    cursor: not-allowed !important;
+    opacity: 0.7;
+
+    &:hover {
+        background-color: #333 !important;
+        color: #fff !important;
+    }
+}
+
+.loading {
+    @include flex_box_custom(center, center, 0px);
+
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.emtyData {
+    @include flex_box_custom(center, center, 0px);
+
+    flex-direction: column;
+    height: 50vh;
+
+    p {
+        font-size: 24px;
+    }
+
+    .btnBack {
+        margin-top: 20px;
+        width: 180px;
+        height: 40px;
+        border-radius: 4px;
+    }
+}

@@ -3,7 +3,7 @@ import styles from "./SaleHomePage.module.scss";
 import useTranslateXImage from "@/hooks/useTranslateXImage";
 
 const SaleHomePage = () => {
-    const { translateXPosition } = useTranslateXImage()
+    const { translateXPosition } = useTranslateXImage();
 
     return <div className={styles.container}>
         <div
@@ -18,7 +18,7 @@ const SaleHomePage = () => {
         <div className={styles.content}>
             <h2 className={styles.title}>Sale of the year</h2>
             <p className={styles.desc}>Libero sed faucibus facilisis fermentum. Est nibh sed massa sodales.</p>
-            <Button content={"Read more"} isPrimary={false} />
+            <Button style={{width: "168px", height: "42px"}} content={"Read more"} isPrimary={false} />
         </div>
         <div
             className={styles.boxImg}

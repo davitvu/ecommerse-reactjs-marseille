@@ -8,7 +8,15 @@ const PopularProduct = ({ data }) => {
             <div className={styles.container}>
                 {
                     data.map((item) =>
-                        <ProductItem key={item._id} mainSrc={item.images[0]} subSrc={item.images[1]} title={item.name} price={item.price} />
+                        <ProductItem
+                            key={item._id}
+                            mainSrc={item.images[0]}
+                            subSrc={item.images[1]}
+                            title={item.name}
+                            price={item.price}
+                            details={item}
+                            isHomePage={true}
+                        />
                     )
                 }
             </div>

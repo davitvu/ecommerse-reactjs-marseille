@@ -2,7 +2,6 @@
 @use '@styles/variable.module.scss' as *;
 
 .productItem {
-    cursor: pointer;
 
     &:hover .showFncWhenHover {
         right: 20px;
@@ -10,6 +9,7 @@
     }
 
     .boxImg {
+        cursor: pointer;
         position: relative;
 
         img {
@@ -40,6 +40,57 @@
 
     }
 
+    .content {
+        @include flex_box_custom(flex-start, flex-start, 5px);
+
+        flex-direction: column;
+    }
+
+    .boxSize {
+        margin-top: 5px;
+        margin-bottom: 5px;
+
+        @include flex_box_custom(center, center, 10px);
+
+        .size {
+            @include flex_box_custom(center, center, 0px);
+
+            cursor: pointer;
+            border: 1px solid #e1e1e1;
+            background-color: #fff;
+            padding: 4px 7px;
+            transition: border 300ms;
+            font-size: 10px;
+
+            &:hover {
+                border: 1px solid $primary_color;
+            }
+        }
+
+    }
+
+    .btnClear {
+        margin-top: 5px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        font-size: 12px;
+        color: $four_color;
+        text-align: center;
+    }
+
+    .title {
+        cursor: pointer;
+        font-size: 16px;
+        color: $four_color;
+        margin-top: 6px;
+    }
+
+    .price {
+        font-size: 14px;
+        color: $thr_color;
+        margin-top: 5px;
+    }
+
     .showFncWhenHover {
         position: absolute;
         background: white;
@@ -47,6 +98,7 @@
         right: 0px;
         bottom: 20px;
         transition: opacity 400ms, right 400ms;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     }
 
     .showImgWhenHover {
@@ -59,15 +111,31 @@
         transition: opacity 400ms;
     }
 
-    .title {
-        font-size: 16px;
-        color: $four_color;
-        margin-top: 6px;
-    }
+}
 
-    .price {
-        font-size: 14px;
-        color: $thr_color;
-        margin-top: 5px;
-    }
+.productItem.oneColumn {
+    @include flex_box_custom(flex-start, center, 20px)
+}
+
+.textCenter {
+    text-align: center;
+}
+
+.activeSize {
+    border: 1px solid $primary_color !important; 
+}
+
+.boxBtn {
+    width: 142px;
+    height: 35px;
+    border-radius: 5px;
+    margin: 15px auto;
+}
+
+.boxBtnLeft {
+    margin: 5px 0;
+}
+
+.largImg {
+    width: 430px;
 }

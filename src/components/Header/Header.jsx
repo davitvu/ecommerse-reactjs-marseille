@@ -12,15 +12,18 @@ import classNames from 'classnames';
 import { SidebarContext } from '@/contexts/SidebarProvider';
 
 const Header = () => {
-    const { setIsOpen, setType } = useContext(SidebarContext);
+    const { setIsOpen, setType, listProductsCart } = useContext(SidebarContext);
     const { scrollPosition } = useScrollHandling();
     const [fixedPosition, setFixedPosition] = useState(false);
-
 
     const handleOpenSideBar = (type) => {
         setType(type);
         setIsOpen(true);
     };
+
+    const totalItemCart = listProductsCart.length > 0 ? listProductsCart.reduce((sum, item) => {
+        return sum + item.quantity;
+    }, 0) : 0;
 
     useEffect(() => {
         // if (scrollPosition > 83) {
@@ -66,7 +69,10 @@ const Header = () => {
                     <div className={styles.containerBoxButtonRight}>
                         <img onClick={() => handleOpenSideBar('compare')} width={22} height={22} src={reloadIcon} alt="reloadIcon" />
                         <img onClick={() => handleOpenSideBar('wishlist')} width={23} height={23} src={heartIcon} alt="heartIcon" />
-                        <img onClick={() => handleOpenSideBar('cart')} width={23} height={23} src={cartIcon} alt="cartIcon" />
+                        <div className={styles.boxCart}>
+                            <img onClick={() => handleOpenSideBar('cart')} width={23} height={23} src={cartIcon} alt="cartIcon" />
+                            <div className={styles.quantity}>{totalItemCart}</div>
+                        </div>
                     </div>
                 </div>
             </div>

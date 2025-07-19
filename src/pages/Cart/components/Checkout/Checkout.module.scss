@@ -1,0 +1,189 @@
+@use '@styles/variable.module.scss' as *;
+
+.checkout {
+    display: flex;
+    gap: 30px;
+    position: relative;
+
+    .left {
+        width: 57%;
+
+        .couponBox {
+            font-size: 14px;
+            font-weight: 300;
+            margin-bottom: 30px;
+
+            p {
+                color: $four_color;
+
+                span {
+                    text-decoration: underline;
+                    cursor: pointer;
+                }
+            }
+
+        }
+
+        h3 {
+            font-size: 14px;
+            font-weight: 300;
+            color: $primary_color;
+            text-transform: uppercase;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e1e1e1;
+            margin-bottom: 20px;
+        }
+
+        .formGroup {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            height: 100%;
+        }
+    }
+
+    .right {
+        flex: 1;
+        padding: 20px;
+        // max-height: 1200px;
+        height: 100%;
+        border: 2px solid $primary_color;
+
+        .orderSummary {
+            width: 100%;
+            height: 100%;
+
+            &>.title {
+                font-size: 14px;
+                font-weight: 300;
+                color: $primary_color;
+                text-transform: uppercase;
+                padding-bottom: 20px;
+                border-bottom: 1px solid #e1e1e1;
+                margin-bottom: 20px;
+            }
+
+            .boxProducts {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                max-height: 469px;
+                overflow-y: auto;
+                overflow-x: hidden;
+                padding-bottom: 20px;
+                margin-bottom: 20px;
+
+                .productItem {
+                    display: flex;
+                    align-items: center;
+                    gap: 20px;
+                    font-size: 14px;
+                    color: $four_color;
+
+                    img {
+                        width: 80px;
+                    }
+
+                    .productInfo {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 10px;
+
+                        p>span {
+                            color: $seconddary_color;
+                        }
+                    }
+                }
+            }
+
+            .boxSubTotal {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 25px;
+                padding-top: 20px;
+                border-top: 1px solid #e1e1e1;
+
+                .title {
+                    font-size: 16px;
+                    color: $thr_color;
+                    font-weight: 400;
+                }
+
+                .price {
+                    font-size: 14px;
+                    color: $four_color;
+                }
+            }
+
+            .boxTotal {
+                display: flex;
+                justify-content: space-between;
+                border-bottom: 1px solid #e1e1e1;
+                padding-bottom: 20px;
+
+                p {
+                    font-size: 20px;
+                    color: $four_color;
+                    font-weight: 400;
+                }
+            }
+
+            .boxPayment {
+                margin-top: 20px;
+                transition: all 0.3s ease;
+
+                .boxPaymentItem {
+                    font-size: 16px;
+                    color: $four_color;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+
+                }
+
+                .descPayment {
+                    margin-top: 0px;
+                    padding-left: 20px;
+                    font-size: 14px;
+                    color: $thr_color;
+                    max-height: 0;
+                    overflow: hidden;
+                    opacity: 0;
+                    visibility: hidden;
+                    transition: all 0.3s ease;
+                }
+                
+                .radioSelected {
+                    visibility: visible;
+                    max-height: 100px;
+                    margin-top: 5px;
+                    display: block;
+                    opacity: 1;
+                    transition: all 0.3s ease;
+                }
+            }
+
+
+            .boxButton {
+                width: 100%;
+                height: 43px;
+                border-radius: 4px;
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
+        }
+    }
+
+    .loading {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: rgba(255, 255, 255, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+}
